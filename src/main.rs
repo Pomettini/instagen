@@ -15,28 +15,29 @@ struct JsonResult {
 
 #[derive(Default)]
 struct Context {
+    input_hashtags: Vec<String>,
     all_tags: Vec<Vec<String>>,
     output_tags: HashSet<String>,
 }
 
 impl Context {
     fn process_hashtags(&mut self) {
+        for input_hashtag in &self.input_hashtags {
+            self.output_tags.insert(input_hashtag.clone());
+        }
+
         let mut counter = 0;
-        loop {
-            for tags in &mut self.all_tags {
-                match tags.pop() {
+        while counter < MAX_HASHTAGS {
+            for tag_group in &mut self.all_tags {
+                match tag_group.pop() {
                     Some(tag) => {
                         self.output_tags.insert(tag);
+                        counter += 1;
                     }
-                    None => continue,
+                    None => (),
                 }
             }
-
             counter += 1;
-
-            if counter > MAX_HASHTAGS {
-                break;
-            }
         }
     }
 
@@ -58,10 +59,14 @@ fn main() {
 
     let mut ctx: Context = Default::default();
 
-    let input_hashtags: Vec<&str> = matches.values_of("hashtags").unwrap().collect();
+    ctx.input_hashtags = matches
+        .values_of("hashtags")
+        .unwrap()
+        .map(|hashtag| hashtag.to_string())
+        .collect();
 
-    for hashtag in &input_hashtags {
-        let url = format!("https://api.datamuse.com/words?rel_trg={}", hashtag);
+    for hashtag in &ctx.input_hashtags {
+        let url = format!("https://api.datamuse.com/words?rel_syn={}", hashtag);
         let json_result: Vec<JsonResult> = reqwest::get(&url).unwrap().json().unwrap();
         let words: Vec<String> = json_result
             .iter()
