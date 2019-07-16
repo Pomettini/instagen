@@ -9,11 +9,11 @@ const MAX_HASHTAGS: usize = 30;
 
 // TODO: Add tests
 // TODO: Remove white spaces from json words
-// TODO: Refactor the code a bit
 
 #[derive(Deserialize)]
 struct JsonResult {
     word: String,
+    #[allow(dead_code)]
     score: usize,
 }
 
@@ -26,19 +26,18 @@ struct Context {
 
 impl Context {
     fn process_hashtags(&mut self) {
+        // Add user hashtags
         for input_hashtag in &self.input_hashtags {
             self.output_tags.insert(input_hashtag.clone());
         }
 
+        // Add hashtags from suggestions until max size
         let mut counter = 0;
         while counter < MAX_HASHTAGS {
             for tag_group in &mut self.all_tags {
-                match tag_group.pop() {
-                    Some(tag) => {
-                        self.output_tags.insert(tag);
-                        counter += 1;
-                    }
-                    None => (),
+                if let Some(tag) = tag_group.pop() {
+                    self.output_tags.insert(tag);
+                    counter += 1;
                 }
             }
             counter += 1;
@@ -46,6 +45,7 @@ impl Context {
     }
 
     fn print_hashtags(&self) -> String {
+        // Print all hashtags with a # prefix in a string
         self.output_tags
             .clone()
             .into_iter()
