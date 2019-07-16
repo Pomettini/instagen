@@ -7,6 +7,10 @@ use std::collections::HashSet;
 
 const MAX_HASHTAGS: usize = 30;
 
+// TODO: Add tests
+// TODO: Remove white spaces from json words
+// TODO: Refactor the code a bit
+
 #[derive(Deserialize)]
 struct JsonResult {
     word: String,
