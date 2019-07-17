@@ -1,3 +1,4 @@
+extern crate assert_cmd;
 extern crate clap;
 extern crate reqwest;
 
@@ -6,8 +7,6 @@ use serde::*;
 use std::collections::HashSet;
 
 const MAX_HASHTAGS: usize = 30;
-
-// TODO: Add tests
 
 #[derive(Deserialize)]
 struct JsonResult {
@@ -85,4 +84,52 @@ fn main() {
     ctx.process_hashtags();
 
     println!("{}", &ctx.print_hashtags());
+}
+
+mod tests {
+    use assert_cmd::prelude::*;
+    use std::process::Command;
+
+    #[test]
+    fn test_no_arguments() {
+        Command::cargo_bin("instagram-hashtags-generator")
+            .unwrap()
+            .assert()
+            .failure();
+    }
+
+    #[test]
+    fn test_generate_hashtags_green() {
+        let output = Command::cargo_bin("instagram-hashtags-generator")
+            .unwrap()
+            .arg("sweden")
+            .arg("summer")
+            .arg("sea")
+            .output()
+            .unwrap();
+
+        let output_string = String::from_utf8_lossy(&output.stdout);
+
+        assert!(output_string.contains("#sweden"));
+        assert!(output_string.contains("#summer"));
+        assert!(output_string.contains("#sea"));
+        assert!(output_string.contains("#sverige"));
+        assert!(output_string.contains("#summer"));
+        assert!(output_string.contains("#ocean"));
+    }
+
+    #[test]
+    fn test_generate_hashtags_red() {
+        let output = Command::cargo_bin("instagram-hashtags-generator")
+            .unwrap()
+            .arg("sweden")
+            .arg("summer")
+            .arg("sea")
+            .output()
+            .unwrap();
+
+        let output_string = String::from_utf8_lossy(&output.stdout);
+
+        assert!(!output_string.contains("#italy"));
+    }
 }

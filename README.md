@@ -6,7 +6,7 @@
 Run with:
 
 ```bash
-cargo run --bin=instagram-hashtags-generator sweden summer sea
+cargo run sweden summer sea
 ```
 
 It will generate this output:
