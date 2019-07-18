@@ -3,9 +3,15 @@ name = "instagram-hashtags-generator"
 version = "0.1.0"
 authors = ["Giorgio Pomettini <giorgio.pomettini@gmail.com>"]
 edition = "2018"
+description = "CLI app to generate hashtags for Instagram"
+keywords = ["instagram", "hashtag", "social media", "generator"]
+categories = ["command-line-utilities"]
+license = "MIT"
+repository = "https://github.com/Pomettini/instagram-hashtag-generator"
+readme = "readme.md"
 
 [dependencies]
-clap = "*"
-reqwest = "*"
-serde = "*"
-assert_cmd = "*"
+clap = ">=2.33"
+reqwest = ">=0.9.18"
+serde = ">=1.0.97"
+assert_cmd = ">=0.11.1"
