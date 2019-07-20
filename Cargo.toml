@@ -1,5 +1,5 @@
 [package]
-name = "instagram-hashtags-generator"
+name = "instagen"
 version = "0.1.0"
 authors = ["Giorgio Pomettini <giorgio.pomettini@gmail.com>"]
 edition = "2018"
