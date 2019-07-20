@@ -6,7 +6,7 @@ use clap::{App, Arg};
 use instagen::Instagen;
 
 fn main() {
-    let matches = App::new("Instagram Hashtag Generator")
+    let matches = App::new("Instagen")
         .version("0.1.0")
         .author("Giorgio Pomettini <giorgio.pomettini@gmail.com>")
         .arg(Arg::with_name("hashtags").required(true).multiple(true))

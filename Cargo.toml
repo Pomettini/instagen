@@ -3,11 +3,11 @@ name = "instagen"
 version = "0.1.0"
 authors = ["Giorgio Pomettini <giorgio.pomettini@gmail.com>"]
 edition = "2018"
-description = "CLI app to generate hashtags for Instagram"
-keywords = ["instagram", "hashtag", "social media", "generator"]
+description = "Library and cli app to generate hashtags for Instagram"
+keywords = ["instagram", "hashtag", "hashtags", "social media", "generator", "cli"]
 categories = ["command-line-utilities"]
 license = "MIT"
-repository = "https://github.com/Pomettini/instagram-hashtag-generator"
+repository = "https://github.com/Pomettini/instagen"
 readme = "readme.md"
 
 [dependencies]

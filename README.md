@@ -1,5 +1,5 @@
-# instagram-hashtag-generator
-🦀 CLI app to generate hashtags for [Instagram](https://www.instagram.com/)
+# instagen
+🦀 Library and cli app to generate hashtags for [Instagram](https://www.instagram.com/)
 
 ## Usage
 
