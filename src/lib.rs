@@ -1,4 +1,6 @@
 extern crate reqwest;
+#[macro_use]
+extern crate maplit;
 
 use serde::*;
 use std::collections::HashSet;
@@ -73,5 +75,77 @@ impl Instagen {
             .into_iter()
             .map(|hashtag| format!("#{} ", hashtag.replace(" ", "")))
             .collect::<String>()
+    }
+
+    pub fn to_hashset(self) -> HashSet<String> {
+        self.output_tags
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use maplit::*;
+
+    #[test]
+    fn test_load_sample_tags() {
+        let result = Instagen::generate(vec!["sweden", "summer", "sea"]);
+
+        assert_eq!(
+            result.output_tags,
+            hashset! {String::from("sweden"), String::from("sverige"), String::from("ocean"), String::from("summertime"), String::from("sea"), String::from("summer")}
+        );
+    }
+
+    #[test]
+    fn test_load_sample_tags_red() {
+        let result = Instagen::generate(vec!["sweden", "summer", "sea"]);
+
+        assert_ne!(result.output_tags, hashset! {String::from("italy")});
+    }
+
+    #[test]
+    fn test_load_empty() {
+        let result = Instagen::generate(vec![""]);
+
+        assert_eq!(result.output_tags, hashset! {String::from("")});
+    }
+
+    #[test]
+    fn test_load_empty_red() {
+        let result = Instagen::generate(vec![""]);
+
+        assert_ne!(result.output_tags, hashset! {String::from("italy")});
+    }
+
+    #[test]
+    fn test_load_sample_tags_return_hashset() {
+        let result = Instagen::generate(vec!["cow"]).to_hashset();
+
+        assert_eq!(
+            result,
+            hashset! {String::from("cow"), String::from("overawe"), String::from("moo-cow")}
+        );
+    }
+
+    #[test]
+    fn test_load_sample_tags_return_hashset_red() {
+        let result = Instagen::generate(vec!["cow"]).to_hashset();
+
+        assert_ne!(result, hashset! {String::from("dog")});
+    }
+
+    #[test]
+    fn test_load_sample_tags_return_hashtags() {
+        let result = Instagen::generate(vec!["kitten"]).to_hashtags();
+
+        assert!(result.contains("#kitty"));
+    }
+
+    #[test]
+    fn test_load_sample_tags_return_hashtags_red() {
+        let result = Instagen::generate(vec!["kitten"]).to_hashtags();
+
+        assert!(!result.contains("#italy"));
     }
 }

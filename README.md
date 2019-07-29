@@ -1,9 +1,11 @@
 # instagen
+
 🦀 Library and cli app to generate hashtags for [Instagram](https://www.instagram.com/)
 
 [![Build Status](https://travis-ci.org/Pomettini/instagen.svg?branch=master)](https://travis-ci.org/Pomettini/instagen)
 [![Build status](https://ci.appveyor.com/api/projects/status/3ogbcgxfdecn3pk5?svg=true)](https://ci.appveyor.com/project/Pomettini/instagen)
 [![Coverage Status](https://coveralls.io/repos/github/Pomettini/instagen/badge.svg)](https://coveralls.io/github/Pomettini/instagen)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Usage
 
