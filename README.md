@@ -5,6 +5,7 @@
 [![Build Status](https://travis-ci.org/Pomettini/instagen.svg?branch=master)](https://travis-ci.org/Pomettini/instagen)
 [![Build status](https://ci.appveyor.com/api/projects/status/3ogbcgxfdecn3pk5?svg=true)](https://ci.appveyor.com/project/Pomettini/instagen)
 [![Coverage Status](https://coveralls.io/repos/github/Pomettini/instagen/badge.svg)](https://coveralls.io/github/Pomettini/instagen)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/54193232d4dd40f98ecbdf595b36466a)](https://www.codacy.com/app/Pomettini/instagen?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Pomettini/instagen&amp;utm_campaign=Badge_Grade)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Usage
